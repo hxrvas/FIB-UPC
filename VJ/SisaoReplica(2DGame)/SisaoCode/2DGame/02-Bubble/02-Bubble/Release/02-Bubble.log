@@ -1,0 +1,47 @@
+﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(392,5): warning MSB8028: The intermediate directory (Release\) contains files shared from another project (Sisao.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  Bandera.cpp
+  Barrera.cpp
+  Cactus.cpp
+  CactusPincho.cpp
+  Caixa.cpp
+  Caixa2.cpp
+  CaixaInteractiva.cpp
+  Enemic.cpp
+  Explosio.cpp
+  Game.cpp
+  Interruptor.cpp
+  main.cpp
+  MenuInit.cpp
+  Palmera.cpp
+  Player.cpp
+Player.cpp(399): warning C4244: 'return': conversión de 'int' a 'float'; posible pérdida de datos
+  Player2.cpp
+Player2.cpp(376): warning C4244: 'return': conversión de 'int' a 'float'; posible pérdida de datos
+  Scene.cpp
+  Scene2.cpp
+  Scene3.cpp
+  Scene4.cpp
+  Compilando...
+  Scene5.cpp
+  SceneCredits.cpp
+  SceneTutorial.cpp
+  Shader.cpp
+  ShaderProgram.cpp
+  SisaoLetter.cpp
+  Sol.cpp
+  Splash.cpp
+  Sprite.cpp
+  TextoTuto.cpp
+  Texture.cpp
+  TileMap.cpp
+SOIL.lib(SOIL.obj) : warning LNK4075: se omite '/EDITANDCONTINUE' debido a la especificación '/OPT:ICF'
+LINK : warning LNK4098: la biblioteca predeterminada'MSVCRTD' entra en conflicto con otras bibliotecas; use la biblioteca /NODEFAULTLIB:biblioteca
+  Generando código
+  All 766 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Generación de código finalizada
+SOIL.lib(image_DXT.obj) : warning LNK4099: no se encontró PDB 'vc100.pdb' con 'SOIL.lib(image_DXT.obj)' o en 'C:\Users\juane\Desktop\JoanHervas\SisaoCode\2DGame\02-Bubble\Release\vc100.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+SOIL.lib(image_helper.obj) : warning LNK4099: no se encontró PDB 'vc100.pdb' con 'SOIL.lib(image_helper.obj)' o en 'C:\Users\juane\Desktop\JoanHervas\SisaoCode\2DGame\02-Bubble\Release\vc100.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+SOIL.lib(SOIL.obj) : warning LNK4099: no se encontró PDB 'vc100.pdb' con 'SOIL.lib(SOIL.obj)' o en 'C:\Users\juane\Desktop\JoanHervas\SisaoCode\2DGame\02-Bubble\Release\vc100.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+SOIL.lib(stb_image_aug.obj) : warning LNK4099: no se encontró PDB 'vc100.pdb' con 'SOIL.lib(stb_image_aug.obj)' o en 'C:\Users\juane\Desktop\JoanHervas\SisaoCode\2DGame\02-Bubble\Release\vc100.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+  02-Bubble.vcxproj -> C:\Users\juane\Desktop\JoanHervas\SisaoCode\2DGame\02-Bubble\Release\02-Bubble.exe
+  02-Bubble.vcxproj -> C:\Users\juane\Desktop\JoanHervas\SisaoCode\2DGame\02-Bubble\Release\02-Bubble.pdb (Full PDB)

@@ -1,0 +1,1 @@
+ fizzBuzz :: [Either Int String]

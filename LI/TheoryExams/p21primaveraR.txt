@@ -1,0 +1,121 @@
+--------------------------------------------------------------------------------------------------
+Logic in Computer Science, April 16th, 2021. Time: 1h30min. No books or lecture notes allowed.
+--------------------------------------------------------------------------------------------------
+-Insert your answers on the dotted lines ... below, and only there.
+-Do NOT modify the problems or the @nota lines.
+-When finished, upload this file with the same name: exam.txt
+-Use the text symbols:     &     v    -       ->          |=        A       E
+   for                    AND   OR   NOT   IMPLIES   "SATISFIES"  FORALL  EXISTS  etc.,  like in:
+   I  |=  p & (q v -r)     (the interpretation I satisfies the formula p & (q v -r)  ).
+   You can write subindices using "_". For example write x_i to denote x-sub-i.
+--------------------------------------------------------------------------------------------------
+
+
+Problem 1. (3 points).                                   @n@nota1:
+
+
+1a)
+Let F and G be propositional formulas such that F is satisfiable and F -> G is also satisfiable.
+Is it true that if F, G, H are formulas such that F & G not|= H then F & G & H is unsatisfiable?
+
+F satisfiable
+-F v G satisfiable
+
+Let F = p, G = p, H = q
+Then, p & p |= q, if I(p) = 1 and I(q) = 0 then I |= p&p but I not|= q
+However, p & p & q is satisfiable, with I(p)=1 and I(q)=1
+
+1b)
+Let F be a tautology, and let G an unsatisfiable formula. Is it true true that F & -G is a
+tautology?
+
+Yes, this is true.
+
+F is a tautology, G is unsatisfiable	iff [see *1 and *2]
+AI, eval_I(F)=1 and eval_I(G)=0		iff [by arithmetic]
+AI, eval_I(F)=1 and 1-eval_I(G)=1		iff [by def of eval -]
+AI, eval_I(F)=1 and eval_I(-G)=1		iff [by arithmetic]
+AI, min(eval_I(F), eval_I(-G))=1		iff [by def of eval &]
+AI, eval_I(F & -G)=1				iff [by def of |=]
+AI, I |= F & -G					iff [by def of tautology]
+F & -G is a tautology
+
+*1:
+F is a tautology                iff  [by def of tautology]
+forall I  we have I |= F        iff  [by def of |= ]
+forall I  we have eval_I(F)=1
+
+*2:
+G is unsatisfiable              iff  [by def of unsatisfiable]
+forall I  we have I not|= G       iff  [by def of not|= ]
+forall I  we have eval_I(G)=0
+
+--------------------------------------------------------------------------------------------------
+
+Problem 2. (2 points).                                   @n@nota2:
+
+The problem called “minOnes” takes as input a natural number k and a propositional
+formula F over propositional variables {x1 . . . , xn}. Its aim is to decide if there is any model I of F
+with at most k ones, that is, any model I such that I(x1) + . . . + I(xn) ≤ k.
+Answer in a few words: Is minOnes NP-hard? Why?                
+Yes, minOnes is in NP-hard, because SAT can be reduced to (or expressed as) minOnes in polynomial time.
+With a formula F of n variables, just call minOnes with F and k=n.
+
+
+--------------------------------------------------------------------------------------------------
+
+Problem 3. (2 points). 
+                   
+Every propositional formula F over n variables can also expressed by a Boolean circuit
+with n inputs and one output. In fact, sometimes the circuit can be much smaller than F because
+each subformula only needs to be represented once. For example, if F is
+
+		x1 ∧ (x3 ∧ x4 ∨ x3 ∧ x4) ∨ x2 ∧ (x3 ∧ x4 ∨ x3 ∧ x4),
+
+a circuit C for F with only five gates exists. Giving names ai to the output wires of each logical gate,
+and using a0 as the output of C, we can write C as:
+
+		a0 = or(a1,a2) a1 = and(x1,a3) a3 = or(a4,a4)
+		a2 = and(x2,a3) a4 = and(x3,x4)
+
+Explain very briefly what do you think is the best way to use a standard SAT solver for CNFs to
+determine whether two circuits C1 and C2, represented like this, are logically equivalent.
+Note: assume different names b0, b1, b2 . . . are used for the internal wires of C2.
+
+We can express the boolean circuit as if it was a Tseiting transformation, and then use the SAT solver
+on both circuits, like this.
+Each gate already has already has an auxiliary variable. Each or gate generates three clauses, (-a0 v a1 v a2,
+-a1 v a0, -a2 v a0), (-a3 v a4 v a4, -a4 v a3, -a4 v a3), each and gate generates three clauses, (-x1 v -a3 v a1, 
+-a1 v x1, -a1 v a3), (-x3 v -x4 v a4, -a4 v x3, -a4 v x4).
+
+Then, if S1 and S2 are the resulting clause sets of C1 and C2, respectively, we can know if C1 and C2 are logically
+equivalent if S1 U S2 U {-a0 v -b0, a0 v b0} in the SAT solver returns unsatisfiable.
+
+
+--------------------------------------------------------------------------------------------------
+
+Problem 4. (3 point ).                                   @n@nota4:
+
+Consider the cardinality constraint x1 + x2 + x3 + x4 + x5 + x6 ≤ 4 (expressing that at
+most 4 of the propositional symbols {x1, x2, x3, x4, x5, x6} are true).
+
+4a) Write the clauses needed to encode this constraint using no auxiliary variables.
+All combinations of the form -xi v -xj v -xk v -xm v -xu, para 1 <= i < j < k < m < u <= n
+
+¬x1 ∨ ¬x2 ∨ ¬x3 ∨ ¬x4 ∨ ¬x5 	¬x1 ∨ ¬x2 ∨ ¬x3 ∨ ¬x4 ∨ ¬x6 	¬x1 ∨ ¬x2 ∨ ¬x3 ∨ ¬x5 ∨ ¬x6
+¬x1 ∨ ¬x2 ∨ ¬x4 ∨ ¬x5 ∨ ¬x6 	¬x1 ∨ ¬x3 ∨ ¬x4 ∨ ¬x5 ∨ ¬x6 	¬x2 ∨ ¬x3 ∨ ¬x4 ∨ ¬x5 ∨ ¬x6
+
+4b) In general, in terms of n and k, how many clauses are needed to encode a cardinality constraint
+x1 + . . . + xn ≤ k using no auxiliary variables? (give no explanations here).
+
+n over k+1
+
+4c) Write the names of any other encoding you know for cardinality constraints x1 + . . . + xn ≤ k,
+an encoding that do use auxiliary variables. In terms of n and k, how many clauses are needed? (give
+no explanations here). 
+
+Sorting networks, O(nlog^2n) or cardinality networks, O(nlog^2k)
+
+--------------------------------------------------------------------------------------------------
+
+

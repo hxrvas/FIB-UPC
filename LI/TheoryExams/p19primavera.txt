@@ -1,0 +1,61 @@
+--------------------------------------------------------------------------------------------------
+Logic in Computer Science, April 30th, 2019. Time: 1h30min. No books or lecture notes allowed.
+--------------------------------------------------------------------------------------------------
+-Insert your answers on the dotted lines ... below, and only there.
+-Do NOT modify the problems or the @nota lines.
+-When finished, upload this file with the same name: exam.txt
+-Use the text symbols:     &     v    -       ->          |=        A       E
+   for                    AND   OR   NOT   IMPLIES   "SATISFIES"  FORALL  EXISTS  etc.,  like in:
+   I  |=  p & (q v -r)     (the interpretation I satisfies the formula p & (q v -r)  ).
+   You can write subindices using "_". For example write x_i to denote x-sub-i.
+--------------------------------------------------------------------------------------------------
+
+
+Problem 1. (4 points).                                   @n@nota1:
+
+1a) Let F, G, H be formulas. Is it true that if F ∨ G |= H then F ∧ ¬H is unsatisfiable? Prove it
+using only the definition of propositional logic.
+
+1b) Let F and G be propositional formulas. Is it true that if F → G is satisfiable and F is satisfiable,
+then G is satisfiable? Prove it using only the definition of propositional logic.
+
+--------------------------------------------------------------------------------------------------
+
+Problem 2. (2 points).                                   @n@nota2:
+
+Let P be the set of four predicate symbols {p, q, r, s}.
+2a) How many propositional formulas F built over P exist?
+2b) My friend John has a list L = {F1, F2, . . . , F100000} of one hundred thousand formulas over
+{p, q, r, s}. He says that they are all logically non-equivalent, that is, Fi 6≡ Fj for all i, j with 1 ≤ i <
+j ≤ 100000. What is the most efficient way to check whether John is right for a given L? Why? Your
+answer cannot be longer than 20 words.
+
+
+
+--------------------------------------------------------------------------------------------------
+
+Problem 3. (4 points). 
+                  
+Let C be the atleast-1 constraint l1 + l2 + l3 ≥ 1, where l1, l2, l3 are literals, and let S
+be the set of five exactly-1 constraints
+{ l1 + a1 + a4 = 1, l2 + a2 + a4 = 1, l3 + a3 = 1, a1 + a2 + a5 = 1, a3 + a4 + a6 = 1 }
+where a1 . . . a6 are distinct propositional symbols not occurring in C.
+3A) Is it true that S |= C? Why? (answer in at most two lines).
+3B) Is it true that any model I of C can be extended to a model I' of S?
+Here, by “extending” I to I' we mean that evalI (li)=evalI'(li) and adequately defining the I'(aj ).
+Answer by just listing I'for the 7 cases of I, completing the table:
+
+l1 l2 l3 	a1 a2 a3 a4 a5 a6
+0     0    1 	.   .   0     1     .     .
+0     1    0 	.    .
+.       . 	.
+
+
+3C) Exactly-1-SAT is the problem of deciding the satisfiability of a given set S of exactly-1 constraints.
+What do you think is the computational complexity of exactly-1-SAT? (polynomial?, NP-complete?,
+harder?). Why?
+
+3D) Same question if all exactly-1 constraints in S have the form l + l' = 1 for literals l and l'.
+
+--------------------------------------------------------------------------------------------------
+

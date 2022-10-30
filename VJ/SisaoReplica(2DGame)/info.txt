@@ -1,0 +1,50 @@
+Xènia Calisalvo i Joan Hervás
+
+Funcionalitats implementades: 
+-5 nivells complets a superar portant els personatges a les banderes.
+-Moviments i col·lisions dels dos personatges.
+-Art dels personatges, objectes , escenes i més.
+-Mort dels personatges i el seu pertinent reinici del nivell.
+-Com a objectes interactius tenim els cactus que al tocar-l'hos fan que es mori el personatge, les caixes 
+i la seva suspensió en el aigua juntament amb totes les col·lisions que comporten perquè el personatge sigui capaç
+de moure-les,les banderes que pugen quan el jugador esta amb contacte amb elles i baixen un cop que aquest se'n va
+de la zona de col·lisió, les barreres i els seus corresponents interruptors i com a part addicional,compresa dins 
+de mecàniques extres, en el nivell 1 hem afegit un enemic que fa referència als "Goomba" del Mario bros. Si aquests
+col·lisionen lateralment amb el Sisao aquest mor, però si en canvi el Sisao és capaç de saltar a sobre seu aquest
+mor aixafat i el Sisao fa un extra salt cap amunt.
+-El moviment de la càmera depenent de la posició dels dos Sisao.
+-El God mode que s'activa apretant la tecla del número 7.
+-Tecla per desactivar les barreres, el número 8.
+-Tecles per a saltar a nivells concrets; 0 per al tutorial, del 1 al 5 per als corresponents nivells, M per al
+menú principal.
+-Els 4 menús; 
+	Menú principal en el que podem triar el nivell que jugarem, consisteix en un fondo amb 6 caixes
+	seleccionables en les que et pots moure amb els botons de les fletxetes de la dreta i la esquerra
+	i seleccionar amb la barra espaiadora.
+	Jugar que consisteix bàsicament en el joc i les interaccions explicades més amunt.
+	Instruccions que consisteixen en un nivell tutorial que et permet fer ús dels controls bàsics del joc.
+	Crèdits que es mouen ascendentment i un cop finalitzats tornen al menú principal.
+-En quant a so comptem amb la música de fons que s'escolta en tots els nivells menys en els crèdits que tenen
+la seva pròpia música, so de salt, de mort, de pas de nivell, de moviment entre caixes (les que et permeten 
+escollir el nivell) en el menú principal, també el de selecció de nivell en aquest mateix menú, de passes per
+al moviment dels players, de mort del enemic, d'apretar l'interruptor i de quan la caixa cau al aigua.
+-Com a animacions dels Sisao tenim la de iddle, la de caminar i la de saltar. Totes les tenim per als dos sentits
+del jugador i invertides per al jugador 2.
+-També tenim animacions per al enemic del nivell 1, tant per al seu moviment com per a la seva mort.
+-Com a objectes interactius amb animacions també tenim el cactus que va pampallugant, i la bandera amb l'animació 
+de que pugi i baixi. Tots els altres objectes del joc també estan animats per nosaltres.
+-Com a efectes especials tenim que quan mor el Sisao apareix una explosió, que quan cau una caixa a l'aigua 
+esquitxa i que quan el Sisao camina es mou la sorra.
+
+Instruccions del joc: 
+Per moure's al menú inicial s'han d'utilitzar les fletxes de la dreta i de la esquerra i per seleccionar el
+nivell apretar la barra espaiadora. El primer nivell mostrat amb una T és el de tutorial que es podria dir que 
+és com les instruccions de jugabilitat. 
+Un cop dins d'un nivell seguim utilitzant les fletxes de la dreta i la esquerra perquè els players es moguin. La
+fletxa cap amunt et permet saltar, mentre estàs saltant es possible desplaçar-te cap als cantons també.
+La finalitat del joc és arribar a la bandera de final del nivell amb els dos jugadors, per tal de fer això
+s'ha d'esquivar una sèrie d'obstacles. Entre aquests trobem el cactus, si entres amb contacte amb ell mors,
+l'enemic, has d'intentar saltar a sobre d'ell per tal de matar-l'ho i que no et mati ell a tu, el interruptor, al
+passar per sobre d'ell s'activarà i desapareixerà la barrera associada amb aquest la qual et permitira avançar,
+les caixes, has de caminar cap a elles per desplaçar-les cap a l'aigua i poder creuar-la, i la bandera que quan
+arribis procediras a canviar de nivell. Un cop superat l'últim se't mostraran els crèdits i tornaràs al menú inicial.

@@ -16,20 +16,40 @@ Problem 1. (4 points).                                   @n@nota1:
 1a) Let F, G, H be formulas. Is it true that if F ∨ G |= H then F ∧ ¬H is unsatisfiable? Prove it
 using only the definition of propositional logic.
 
+F v G |= H
+AI, F v G and H have the same models
+AI, if eval_I(F v G) = 1  then eval_I(H) = 1
+AI, if max(eval_I(F), eval_I(G)) = 1 then eval_I(H) = 1
+AI, if eval_I(F) = 1 then eval_I(H) = 1
+AI, if eval_I(F) = 1 then 1-eval_I(H) = 0
+AI, if eval_I(F) = 1 then eval_I(H) = 0
+AI, min(eval_I(F), eval_I(H)) = 0
+AI, F & ¬H is unsatisfiable
+
+
 1b) Let F and G be propositional formulas. Is it true that if F → G is satisfiable and F is satisfiable,
 then G is satisfiable? Prove it using only the definition of propositional logic.
 
+This is false. 
+Let F be p and G be p & -p.
+Then, F -> G is satisfiable, as if I(p) = 0 then I |= -p v p & -p.
+However, G is unsatisfiable.
 --------------------------------------------------------------------------------------------------
 
 Problem 2. (2 points).                                   @n@nota2:
 
-Let P be the set of four predicate symbols {p, q, r, s}.
+Let P be the set of four predicate symbols {p, q, r, s}.\
+
 2a) How many propositional formulas F built over P exist?
+Infinitely many
+
 2b) My friend John has a list L = {F1, F2, . . . , F100000} of one hundred thousand formulas over
-{p, q, r, s}. He says that they are all logically non-equivalent, that is, Fi 6≡ Fj for all i, j with 1 ≤ i <
+{p, q, r, s}. He says that they are all logically non-equivalent, that is, Fi not≡ Fj for all i, j with 1 ≤ i <
 j ≤ 100000. What is the most efficient way to check whether John is right for a given L? Why? Your
 answer cannot be longer than 20 words.
 
+As there cannot be more than 2^16 unique propositional formulas F built over {p, q, r, s}, the most
+efficient way to check wether John is right is to output false. Constant time.
 
 
 --------------------------------------------------------------------------------------------------
@@ -41,21 +61,31 @@ be the set of five exactly-1 constraints
 { l1 + a1 + a4 = 1, l2 + a2 + a4 = 1, l3 + a3 = 1, a1 + a2 + a5 = 1, a3 + a4 + a6 = 1 }
 where a1 . . . a6 are distinct propositional symbols not occurring in C.
 3A) Is it true that S |= C? Why? (answer in at most two lines).
+Yes. Assume S not|= C. Then, EI with I|=S and Inot|=C. So I(l1)=I(l2)=I(l3)=0, implying I(a3)=1,
+I(a4)=0, I(a1)=I(a2)=1, contradicting a1+a2+a5.
+
 3B) Is it true that any model I of C can be extended to a model I' of S?
 Here, by “extending” I to I' we mean that evalI (li)=evalI'(li) and adequately defining the I'(aj ).
 Answer by just listing I'for the 7 cases of I, completing the table:
 
-l1 l2 l3 	a1 a2 a3 a4 a5 a6
-0     0    1 	.   .   0     1     .     .
-0     1    0 	.    .
-.       . 	.
+l1 l2 l3 a1 a2 a3 a4 a5 a6
+0   0  1  0  0  0  1  1  0
+0   1  0  1  0  1  0  0  0
+0   1  1  1  0  0  0  0  1
+1   0  0  0  1  1  0  0  0
+1   0  1  0  1  0  0  0  1
+1   1  0  0  0  1  0  1  0
+1   1  1  0  0  0  0  1  1
 
 
 3C) Exactly-1-SAT is the problem of deciding the satisfiability of a given set S of exactly-1 constraints.
 What do you think is the computational complexity of exactly-1-SAT? (polynomial?, NP-complete?,
 harder?). Why?
+Its NP-complete, since it can be reduced to SAT (solved with SAT), by codifying the constraints in SAT,
+and we can reduce 3Sat to exactly-1-SAT using 3a and 3b.
 
 3D) Same question if all exactly-1 constraints in S have the form l + l' = 1 for literals l and l'.
-
+Then is polynomial, because it can be reduced to 2-SAT, expressing each constraint by to clauses l v l' and 
+-l v -l'
 --------------------------------------------------------------------------------------------------
 

@@ -13,45 +13,101 @@ Logic in Computer Science, November 9th, 2020. Time: 1h30min. No books or lectur
 
 Problem 1. (3 points).                                   @n@nota1:
 
-Prove, using only the definitions of propositional logic, that the deduction rule of resolution in propositional logic is correct, that is, if from the two clauses C1 and C2 by resolution we can obtain a clause
-D, then C1 ∧ C2 |= D.
+Let us remember the Heule-3 encoding for at-most-one (amo) that is, for expressing in CNF
+that at most one of the literals x1 . . . xn is true, also written x1 + . . . + xn ≤ 1. It uses the fact that
+amo(x1 . . . xn) iff amo(x1, x2, x3, aux) AND amo(¬aux, x4 . . . xn). Then the part amo(¬aux, x4 . . . xn),
+which has n − 2 variables, can be encoded recursively in the same way, and amo(x1, x2, x3, aux) can
+be expressed using the quadratic encoding with 6 clauses. In this way, for eliminating two variables
+we need one auxiliary variable end six clauses, so in total we need n/2 variables and 3n clauses.
+
+1a) We now want to extend the encoding for at-most-two (amt, also written x1 + . . . + xn ≤ 2). Prove
+that amt(x1 . . . xn) has a model I iff amt(x1, x2, x3, aux1, aux2) ∧ amt(¬aux1,¬aux2, x4 . . . xn) has a
+model I', with I(xi) = I'(xi) for all i in 1 . . . n.
+
+=>
+If I|=amt(x1...xn) and k is the number of literals of {x1, x2, x3} that are true in I, then
+we extend I into I' as follows: if k = 0 we set I'(aux1) = I'(aux2) = 1; if k = 1 we set (for example)
+I'(aux1)=1 and I'(aux2)=0; if k = 3 we set I'(aux1)=I'(aux2)=0. In all three cases 
+I' |= amt(x1,x2,x3,aux1, aux2) & amt(-aux1, -aux2, x4...xn).
+
+<=
+If I' |= amt(x1, x2, x3, aux1, aux2) & amt(-aux1, -aux2, x4...xn) then, forgetting the part of the 
+auxiliary variables, in all cases the resulting I is a model of amt(x1...xn) because:
+-If I'(aux1) = I'(aux2)=1 then I|= -x1 & -x2 & -x4 and I |= amt(x4...xn).
+-If I'(aux1) = I'(aux2)=1 then I|= amt(x1,x2,x3) and I |= -x4 & ... & -xn.
+-If I'(aux1) = 1 and I'(aux2)= 0 (or viceversa) then I |= amo(x1,x2,x3) and I |= amo{x4...xn}.
+
+1b) Write all clauses for encoding amt(x1, x2, x3, aux1, aux2) with no more auxiliary variables.
+We need one clause for each subset of 3 elements out of 5, that is, 5 over 3= 10 clauses:
+¬x1 ∨ ¬x2 ∨ ¬x3,  ¬x1 ∨ ¬x2 ∨ ¬aux1, ¬x1 ∨ ¬x2 ∨ ¬aux2,  ¬x1 ∨ ¬x3 ∨ ¬aux1,
+¬x1 ∨ ¬x3 ∨ ¬aux2,  ¬x1 ∨ ¬aux1 ∨ ¬aux2,  ¬x2 ∨ ¬x3 ∨ ¬aux1,  ¬x2 ∨ ¬x3 ∨ ¬aux2,
+¬x2 ∨ ¬aux1 ∨ ¬aux2,  ¬x3 ∨ ¬aux1 ∨ ¬aux
+
+
+1c) How many clauses and auxiliary variables are needed in total for amt(x1 . . . xn) in this way?
+
+ The part amt(¬aux1,¬aux2, x4 . . . xn) has one literal less. So to eliminate one literal, we
+need 10 clauses and 2 auxiliary variables and hence in total 10n clauses and 2n auxiliary variables
+
+
+1d) The Heule-3 encoding for amo(x1, . . . , xn) has a good property: if one of the literals xi becomes
+true, all other literals in x1, . . . , xn are set to false by unit propagation. Does this amt encoding
+have such a property?, that is, if two of x1 . . . xn become true, will unit propagation set the other
+variables to false? Explain why
+
+ No. For example, if x1 and x4 become true, no unit propagation takes place at all
+
 
 --------------------------------------------------------------------------------------------------
 
 Problem 2. (3 points).                                   @n@nota2:
 
-Assuming you can use a SAT solver or any other algorithm, explain very briefly what you would do
-and what the computational cost would be and why, to decide the following two problems:
+Every propositional formula F over n variables can also expressed by a Boolean circuit with n
+inputs and one output. In fact, sometimes the circuit can be much smaller than F because each
+subformula only needs to be represented once. For example, if F is
 
-2a) Given a formula F in disjunctive normal form (DNF), decide whether F is a tautology.
+	x1 ∧ (x3 ∧ x4 ∨ x3 ∧ x4) ∨ x2 ∧ (x3 ∧ x4 ∨ x3 ∧ x4),
 
-2b) Given a formula F in disjunctive normal form (DNF), decide whether F is a satisfiable.
+a circuit for F with only five gates, representing the output of each logical gate as a new variable (a
+natural number, and using 0 as the output), is:
 
+0 = or(1,2) 1 = and(x1,3) 3 = or(4,4)
+	   2 = and(x2,3) 4 = and(x3,x4)
+
+Explain very briefly how you would use a standard SAT solver for CNFs to efficiently determine
+whether two circuits C1 and C2, represented like this, are logically equivalent.
+
+Use the Tseitin transformation to transform the boolean circuit into a CNF. a0 and b0 are unitary clausules,
+then each and of the form ai = and(p, q) gets three clausules -ai v p, -p v -q v ai, -ai v q, each or 
+of the form ai = or(p, q) gets three clausules -ai v p v q, -p v ai, -q v ai. Same with the second circuit.
+
+Then, to know if they are logically equivalent, we add two clauses -a0 v -b0, a0 v b0. If the SAT solver
+returns unsatisfiable then it means they have the same model.
 
 --------------------------------------------------------------------------------------------------
 
 Problem 3. (4 points). 
                   
-Let P be a set of propositional predicate symbols. Let S be a set of clauses over P and let N be a
-subset of P. We define flip(N, S) to be the set of clauses obtained from S by flipping (changing the
-sign) of all literals with symbols in N.
+1. If F is unsatisfiable, then for every G we have G |= F. False
 
-For example, 	flip( {p, q}, { p ∨ ¬q ∨ ¬r, q ∨ r } ) is { ¬p ∨ q ∨ ¬r, ¬q ∨ r }.
+2. If F is unsatisfiable, then for every G we have F |= G. True
 
-A clause is called Horn if it has at most one positive literal. A set of clauses S is called renamable
-Horn if there is some N ⊆ P such that flip(N, S) is a set of Horn clauses.
+3. Let F, G, H be formulas. If F ∨ G |= H then F ∧ ¬H is unsatisfiable. True
 
-3a) Explain in three lines: given S and N such that flip(N, S) is a set of Horn clauses, what would
-you do to efficiently decide whether S is satisfiable, and why?
+4. The formula p ∨ p is a logical consequence of the formula (p ∨ q ∨ r) ∧ (¬q ∨ r) ∧ (¬r). True
 
-3b) Given an arbitrary set of clauses S, we want to decide whether it is renamable Horn and, if so,
-find the corresponding N. We will do this using an algorithm based on... SAT! For each p ∈ P, we
-introduce a SAT variable flipped(p) meaning that symbol p is in N. Then we add clauses for every
-clause C of S and every pair of literals l and l' in C, forbidding that after doing all flips,  l and l'
-both become positive.
+5. The formula (p ∨ q) ∧ (¬p ∨ q) ∧ (¬p ∨ ¬q) ∧ (¬q ∨ p) is unsatisfiable. True
 
-Explain in three lines: which clauses do you need, what is the cost of the resulting SAT-based
-algorithm and why?
+6. If F is a tautology, then for every G we have F |= G. False
 
+7. Let F, G, H be formulas. If F ∧ G not|= H then F ∧ G ∧ H is unsatisfiable. False
+
+8. Let F, G, H be formulas. If F ∧ G |= ¬H then F ∧ G ∧ H is unsatisfiable. True
+
+9. If F is a tautology, then for every G we have G |= F. True
+
+10. Assume |P| = n. There are 2^n interpretations.  Moreover there are exactly k = 2^2^n
+formulas F1, . . . , Fk such that for all i, j with i 6= j in 1 . . . k, Fi 6≡ Fj . Each one of these Fi represents a
+different Boolean function. True
 --------------------------------------------------------------------------------------------------
 

@@ -25,7 +25,6 @@ statements
 statement
         // Assignació
         : left_expr ASSIGN expr                                 # assignStmt
-        // Invocació de funcions
         // if else (else optional)
         | IF expr '{' statements '}' (ELSE '{' statements '}')? # ifStmt
         // Iteració amb while

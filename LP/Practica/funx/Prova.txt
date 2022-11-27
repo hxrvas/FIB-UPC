@@ -1,8 +1,17 @@
-Suma x y
+Euclides a b
 {
-x + y
+  while a != b
+  {
+    if a > b 
+    {
+      a <- a - b
+    }
+    else
+    {
+      b <- b - a
+    }
+  }
+  a
 }
 
-(2 * 3) + 4 
-
-
+Euclides 6 8

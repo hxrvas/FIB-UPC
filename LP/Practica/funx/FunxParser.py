@@ -8,42 +8,41 @@ import sys
 def serializedATN():
     with StringIO() as buf:
         buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\35")
-        buf.write("q\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b")
+        buf.write("n\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b")
         buf.write("\t\b\4\t\t\t\3\2\7\2\24\n\2\f\2\16\2\27\13\2\3\2\5\2\32")
-        buf.write("\n\2\3\2\3\2\3\3\3\3\5\3 \n\3\3\3\3\3\3\3\3\3\3\4\3\4")
-        buf.write("\7\4(\n\4\f\4\16\4+\13\4\3\5\7\5.\n\5\f\5\16\5\61\13\5")
-        buf.write("\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3")
-        buf.write("\6\5\6A\n\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\5\6J\n\6\3\7\3")
-        buf.write("\7\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\7\bV\n\b\f\b\16\bY")
-        buf.write("\13\b\5\b[\n\b\3\b\3\b\5\b_\n\b\3\b\3\b\3\b\3\b\3\b\3")
-        buf.write("\b\3\b\3\b\3\b\7\bj\n\b\f\b\16\bm\13\b\3\t\3\t\3\t\2\3")
-        buf.write("\16\n\2\4\6\b\n\f\16\20\2\5\3\2\20\22\3\2\16\17\3\2\b")
-        buf.write("\r\2y\2\25\3\2\2\2\4\35\3\2\2\2\6%\3\2\2\2\b/\3\2\2\2")
-        buf.write("\nI\3\2\2\2\fK\3\2\2\2\16^\3\2\2\2\20n\3\2\2\2\22\24\5")
-        buf.write("\4\3\2\23\22\3\2\2\2\24\27\3\2\2\2\25\23\3\2\2\2\25\26")
-        buf.write("\3\2\2\2\26\31\3\2\2\2\27\25\3\2\2\2\30\32\5\16\b\2\31")
-        buf.write("\30\3\2\2\2\31\32\3\2\2\2\32\33\3\2\2\2\33\34\7\2\2\3")
-        buf.write("\34\3\3\2\2\2\35\37\7\33\2\2\36 \5\6\4\2\37\36\3\2\2\2")
-        buf.write("\37 \3\2\2\2 !\3\2\2\2!\"\7\3\2\2\"#\5\b\5\2#$\7\4\2\2")
-        buf.write("$\5\3\2\2\2%)\7\32\2\2&(\7\32\2\2\'&\3\2\2\2(+\3\2\2\2")
-        buf.write(")\'\3\2\2\2)*\3\2\2\2*\7\3\2\2\2+)\3\2\2\2,.\5\n\6\2-")
-        buf.write(",\3\2\2\2.\61\3\2\2\2/-\3\2\2\2/\60\3\2\2\2\60\t\3\2\2")
-        buf.write("\2\61/\3\2\2\2\62\63\5\f\7\2\63\64\7\7\2\2\64\65\5\16")
-        buf.write("\b\2\65J\3\2\2\2\66\67\7\23\2\2\678\5\16\b\289\7\3\2\2")
-        buf.write("9:\5\b\5\2:@\7\4\2\2;<\7\24\2\2<=\7\3\2\2=>\5\b\5\2>?")
-        buf.write("\7\4\2\2?A\3\2\2\2@;\3\2\2\2@A\3\2\2\2AJ\3\2\2\2BC\7\25")
-        buf.write("\2\2CD\5\16\b\2DE\7\3\2\2EF\5\b\5\2FG\7\4\2\2GJ\3\2\2")
-        buf.write("\2HJ\5\16\b\2I\62\3\2\2\2I\66\3\2\2\2IB\3\2\2\2IH\3\2")
-        buf.write("\2\2J\13\3\2\2\2KL\5\20\t\2L\r\3\2\2\2MN\b\b\1\2NO\7\5")
-        buf.write("\2\2OP\5\16\b\2PQ\7\6\2\2Q_\3\2\2\2RZ\7\33\2\2SW\5\16")
-        buf.write("\b\2TV\5\16\b\2UT\3\2\2\2VY\3\2\2\2WU\3\2\2\2WX\3\2\2")
-        buf.write("\2X[\3\2\2\2YW\3\2\2\2ZS\3\2\2\2Z[\3\2\2\2[_\3\2\2\2\\")
-        buf.write("_\5\20\t\2]_\7\31\2\2^M\3\2\2\2^R\3\2\2\2^\\\3\2\2\2^")
-        buf.write("]\3\2\2\2_k\3\2\2\2`a\f\7\2\2ab\t\2\2\2bj\5\16\b\bcd\f")
-        buf.write("\6\2\2de\t\3\2\2ej\5\16\b\7fg\f\5\2\2gh\t\4\2\2hj\5\16")
-        buf.write("\b\6i`\3\2\2\2ic\3\2\2\2if\3\2\2\2jm\3\2\2\2ki\3\2\2\2")
-        buf.write("kl\3\2\2\2l\17\3\2\2\2mk\3\2\2\2no\7\32\2\2o\21\3\2\2")
-        buf.write("\2\16\25\31\37)/@IWZ^ik")
+        buf.write("\n\2\3\2\3\2\3\3\3\3\3\3\3\3\3\3\3\3\3\4\7\4%\n\4\f\4")
+        buf.write("\16\4(\13\4\3\5\7\5+\n\5\f\5\16\5.\13\5\3\6\3\6\3\6\3")
+        buf.write("\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\5\6>\n\6\3")
+        buf.write("\6\3\6\3\6\3\6\3\6\3\6\3\6\5\6G\n\6\3\7\3\7\3\b\3\b\3")
+        buf.write("\b\3\b\3\b\3\b\3\b\3\b\7\bS\n\b\f\b\16\bV\13\b\5\bX\n")
+        buf.write("\b\3\b\3\b\5\b\\\n\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3")
+        buf.write("\b\7\bg\n\b\f\b\16\bj\13\b\3\t\3\t\3\t\2\3\16\n\2\4\6")
+        buf.write("\b\n\f\16\20\2\5\3\2\20\22\3\2\16\17\3\2\b\r\2u\2\25\3")
+        buf.write("\2\2\2\4\35\3\2\2\2\6&\3\2\2\2\b,\3\2\2\2\nF\3\2\2\2\f")
+        buf.write("H\3\2\2\2\16[\3\2\2\2\20k\3\2\2\2\22\24\5\4\3\2\23\22")
+        buf.write("\3\2\2\2\24\27\3\2\2\2\25\23\3\2\2\2\25\26\3\2\2\2\26")
+        buf.write("\31\3\2\2\2\27\25\3\2\2\2\30\32\5\16\b\2\31\30\3\2\2\2")
+        buf.write("\31\32\3\2\2\2\32\33\3\2\2\2\33\34\7\2\2\3\34\3\3\2\2")
+        buf.write("\2\35\36\7\33\2\2\36\37\5\6\4\2\37 \7\3\2\2 !\5\b\5\2")
+        buf.write("!\"\7\4\2\2\"\5\3\2\2\2#%\7\32\2\2$#\3\2\2\2%(\3\2\2\2")
+        buf.write("&$\3\2\2\2&\'\3\2\2\2\'\7\3\2\2\2(&\3\2\2\2)+\5\n\6\2")
+        buf.write("*)\3\2\2\2+.\3\2\2\2,*\3\2\2\2,-\3\2\2\2-\t\3\2\2\2.,")
+        buf.write("\3\2\2\2/\60\5\f\7\2\60\61\7\7\2\2\61\62\5\16\b\2\62G")
+        buf.write("\3\2\2\2\63\64\7\23\2\2\64\65\5\16\b\2\65\66\7\3\2\2\66")
+        buf.write("\67\5\b\5\2\67=\7\4\2\289\7\24\2\29:\7\3\2\2:;\5\b\5\2")
+        buf.write(";<\7\4\2\2<>\3\2\2\2=8\3\2\2\2=>\3\2\2\2>G\3\2\2\2?@\7")
+        buf.write("\25\2\2@A\5\16\b\2AB\7\3\2\2BC\5\b\5\2CD\7\4\2\2DG\3\2")
+        buf.write("\2\2EG\5\16\b\2F/\3\2\2\2F\63\3\2\2\2F?\3\2\2\2FE\3\2")
+        buf.write("\2\2G\13\3\2\2\2HI\5\20\t\2I\r\3\2\2\2JK\b\b\1\2KL\7\5")
+        buf.write("\2\2LM\5\16\b\2MN\7\6\2\2N\\\3\2\2\2OW\7\33\2\2PT\5\16")
+        buf.write("\b\2QS\5\16\b\2RQ\3\2\2\2SV\3\2\2\2TR\3\2\2\2TU\3\2\2")
+        buf.write("\2UX\3\2\2\2VT\3\2\2\2WP\3\2\2\2WX\3\2\2\2X\\\3\2\2\2")
+        buf.write("Y\\\5\20\t\2Z\\\7\31\2\2[J\3\2\2\2[O\3\2\2\2[Y\3\2\2\2")
+        buf.write("[Z\3\2\2\2\\h\3\2\2\2]^\f\7\2\2^_\t\2\2\2_g\5\16\b\b`")
+        buf.write("a\f\6\2\2ab\t\3\2\2bg\5\16\b\7cd\f\5\2\2de\t\4\2\2eg\5")
+        buf.write("\16\b\6f]\3\2\2\2f`\3\2\2\2fc\3\2\2\2gj\3\2\2\2hf\3\2")
+        buf.write("\2\2hi\3\2\2\2i\17\3\2\2\2jh\3\2\2\2kl\7\32\2\2l\21\3")
+        buf.write("\2\2\2\r\25\31&,=FTW[fh")
         return buf.getvalue()
 
 
@@ -194,12 +193,12 @@ class FunxParser ( Parser ):
         def FUNCID(self):
             return self.getToken(FunxParser.FUNCID, 0)
 
-        def statements(self):
-            return self.getTypedRuleContext(FunxParser.StatementsContext,0)
-
-
         def parameters(self):
             return self.getTypedRuleContext(FunxParser.ParametersContext,0)
+
+
+        def statements(self):
+            return self.getTypedRuleContext(FunxParser.StatementsContext,0)
 
 
         def getRuleIndex(self):
@@ -218,24 +217,17 @@ class FunxParser ( Parser ):
 
         localctx = FunxParser.FunctionContext(self, self._ctx, self.state)
         self.enterRule(localctx, 2, self.RULE_function)
-        self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 27
             self.match(FunxParser.FUNCID)
+            self.state = 28
+            self.parameters()
             self.state = 29
-            self._errHandler.sync(self)
-            _la = self._input.LA(1)
-            if _la==FunxParser.VARID:
-                self.state = 28
-                self.parameters()
-
-
-            self.state = 31
             self.match(FunxParser.T__0)
-            self.state = 32
+            self.state = 30
             self.statements()
-            self.state = 33
+            self.state = 31
             self.match(FunxParser.T__1)
         except RecognitionException as re:
             localctx.exception = re
@@ -276,15 +268,13 @@ class FunxParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 35
-            self.match(FunxParser.VARID)
-            self.state = 39
+            self.state = 36
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while _la==FunxParser.VARID:
-                self.state = 36
+                self.state = 33
                 self.match(FunxParser.VARID)
-                self.state = 41
+                self.state = 38
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -328,13 +318,13 @@ class FunxParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 45
+            self.state = 42
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << FunxParser.T__2) | (1 << FunxParser.IF) | (1 << FunxParser.WHILE) | (1 << FunxParser.INT) | (1 << FunxParser.VARID) | (1 << FunxParser.FUNCID))) != 0):
-                self.state = 42
+                self.state = 39
                 self.statement()
-                self.state = 47
+                self.state = 44
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -457,44 +447,44 @@ class FunxParser ( Parser ):
         self.enterRule(localctx, 8, self.RULE_statement)
         self._la = 0 # Token type
         try:
-            self.state = 71
+            self.state = 68
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,6,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input,5,self._ctx)
             if la_ == 1:
                 localctx = FunxParser.AssignStmtContext(self, localctx)
                 self.enterOuterAlt(localctx, 1)
-                self.state = 48
+                self.state = 45
                 self.left_expr()
-                self.state = 49
+                self.state = 46
                 self.match(FunxParser.ASSIGN)
-                self.state = 50
+                self.state = 47
                 self.expr(0)
                 pass
 
             elif la_ == 2:
                 localctx = FunxParser.IfStmtContext(self, localctx)
                 self.enterOuterAlt(localctx, 2)
-                self.state = 52
+                self.state = 49
                 self.match(FunxParser.IF)
-                self.state = 53
+                self.state = 50
                 self.expr(0)
-                self.state = 54
+                self.state = 51
                 self.match(FunxParser.T__0)
-                self.state = 55
+                self.state = 52
                 self.statements()
-                self.state = 56
+                self.state = 53
                 self.match(FunxParser.T__1)
-                self.state = 62
+                self.state = 59
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
                 if _la==FunxParser.ELSE:
-                    self.state = 57
+                    self.state = 54
                     self.match(FunxParser.ELSE)
-                    self.state = 58
+                    self.state = 55
                     self.match(FunxParser.T__0)
-                    self.state = 59
+                    self.state = 56
                     self.statements()
-                    self.state = 60
+                    self.state = 57
                     self.match(FunxParser.T__1)
 
 
@@ -503,22 +493,22 @@ class FunxParser ( Parser ):
             elif la_ == 3:
                 localctx = FunxParser.WhileStmtContext(self, localctx)
                 self.enterOuterAlt(localctx, 3)
-                self.state = 64
+                self.state = 61
                 self.match(FunxParser.WHILE)
-                self.state = 65
+                self.state = 62
                 self.expr(0)
-                self.state = 66
+                self.state = 63
                 self.match(FunxParser.T__0)
-                self.state = 67
+                self.state = 64
                 self.statements()
-                self.state = 68
+                self.state = 65
                 self.match(FunxParser.T__1)
                 pass
 
             elif la_ == 4:
                 localctx = FunxParser.ReturnStmtContext(self, localctx)
                 self.enterOuterAlt(localctx, 4)
-                self.state = 70
+                self.state = 67
                 self.expr(0)
                 pass
 
@@ -572,7 +562,7 @@ class FunxParser ( Parser ):
         try:
             localctx = FunxParser.LeftIdentContext(self, localctx)
             self.enterOuterAlt(localctx, 1)
-            self.state = 73
+            self.state = 70
             self.ident()
         except RecognitionException as re:
             localctx.exception = re
@@ -742,7 +732,7 @@ class FunxParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 92
+            self.state = 89
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [FunxParser.T__2]:
@@ -750,35 +740,35 @@ class FunxParser ( Parser ):
                 self._ctx = localctx
                 _prevctx = localctx
 
-                self.state = 76
+                self.state = 73
                 self.match(FunxParser.T__2)
-                self.state = 77
+                self.state = 74
                 self.expr(0)
-                self.state = 78
+                self.state = 75
                 self.match(FunxParser.T__3)
                 pass
             elif token in [FunxParser.FUNCID]:
                 localctx = FunxParser.FuncExprContext(self, localctx)
                 self._ctx = localctx
                 _prevctx = localctx
-                self.state = 80
+                self.state = 77
                 self.match(FunxParser.FUNCID)
-                self.state = 88
+                self.state = 85
                 self._errHandler.sync(self)
-                la_ = self._interp.adaptivePredict(self._input,8,self._ctx)
+                la_ = self._interp.adaptivePredict(self._input,7,self._ctx)
                 if la_ == 1:
-                    self.state = 81
+                    self.state = 78
                     self.expr(0)
-                    self.state = 85
+                    self.state = 82
                     self._errHandler.sync(self)
-                    _alt = self._interp.adaptivePredict(self._input,7,self._ctx)
+                    _alt = self._interp.adaptivePredict(self._input,6,self._ctx)
                     while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
                         if _alt==1:
-                            self.state = 82
+                            self.state = 79
                             self.expr(0) 
-                        self.state = 87
+                        self.state = 84
                         self._errHandler.sync(self)
-                        _alt = self._interp.adaptivePredict(self._input,7,self._ctx)
+                        _alt = self._interp.adaptivePredict(self._input,6,self._ctx)
 
 
 
@@ -787,7 +777,7 @@ class FunxParser ( Parser ):
                 localctx = FunxParser.ExprIdentContext(self, localctx)
                 self._ctx = localctx
                 _prevctx = localctx
-                self.state = 90
+                self.state = 87
                 self.ident()
                 pass
             elif token in [FunxParser.INT]:
@@ -795,82 +785,82 @@ class FunxParser ( Parser ):
                 self._ctx = localctx
                 _prevctx = localctx
 
-                self.state = 91
+                self.state = 88
                 self.match(FunxParser.INT)
                 pass
             else:
                 raise NoViableAltException(self)
 
             self._ctx.stop = self._input.LT(-1)
-            self.state = 105
+            self.state = 102
             self._errHandler.sync(self)
-            _alt = self._interp.adaptivePredict(self._input,11,self._ctx)
+            _alt = self._interp.adaptivePredict(self._input,10,self._ctx)
             while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
                 if _alt==1:
                     if self._parseListeners is not None:
                         self.triggerExitRuleEvent()
                     _prevctx = localctx
-                    self.state = 103
+                    self.state = 100
                     self._errHandler.sync(self)
-                    la_ = self._interp.adaptivePredict(self._input,10,self._ctx)
+                    la_ = self._interp.adaptivePredict(self._input,9,self._ctx)
                     if la_ == 1:
                         localctx = FunxParser.ArithmeticContext(self, FunxParser.ExprContext(self, _parentctx, _parentState))
                         self.pushNewRecursionContext(localctx, _startState, self.RULE_expr)
-                        self.state = 94
+                        self.state = 91
                         if not self.precpred(self._ctx, 5):
                             from antlr4.error.Errors import FailedPredicateException
                             raise FailedPredicateException(self, "self.precpred(self._ctx, 5)")
-                        self.state = 95
+                        self.state = 92
                         _la = self._input.LA(1)
                         if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << FunxParser.MUL) | (1 << FunxParser.DIV) | (1 << FunxParser.MOD))) != 0)):
                             self._errHandler.recoverInline(self)
                         else:
                             self._errHandler.reportMatch(self)
                             self.consume()
-                        self.state = 96
+                        self.state = 93
                         self.expr(6)
                         pass
 
                     elif la_ == 2:
                         localctx = FunxParser.ArithmeticContext(self, FunxParser.ExprContext(self, _parentctx, _parentState))
                         self.pushNewRecursionContext(localctx, _startState, self.RULE_expr)
-                        self.state = 97
+                        self.state = 94
                         if not self.precpred(self._ctx, 4):
                             from antlr4.error.Errors import FailedPredicateException
                             raise FailedPredicateException(self, "self.precpred(self._ctx, 4)")
-                        self.state = 98
+                        self.state = 95
                         _la = self._input.LA(1)
                         if not(_la==FunxParser.PLUS or _la==FunxParser.MINUS):
                             self._errHandler.recoverInline(self)
                         else:
                             self._errHandler.reportMatch(self)
                             self.consume()
-                        self.state = 99
+                        self.state = 96
                         self.expr(5)
                         pass
 
                     elif la_ == 3:
                         localctx = FunxParser.RelationalContext(self, FunxParser.ExprContext(self, _parentctx, _parentState))
                         self.pushNewRecursionContext(localctx, _startState, self.RULE_expr)
-                        self.state = 100
+                        self.state = 97
                         if not self.precpred(self._ctx, 3):
                             from antlr4.error.Errors import FailedPredicateException
                             raise FailedPredicateException(self, "self.precpred(self._ctx, 3)")
-                        self.state = 101
+                        self.state = 98
                         _la = self._input.LA(1)
                         if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << FunxParser.E) | (1 << FunxParser.NE) | (1 << FunxParser.GE) | (1 << FunxParser.LE) | (1 << FunxParser.GT) | (1 << FunxParser.LT))) != 0)):
                             self._errHandler.recoverInline(self)
                         else:
                             self._errHandler.reportMatch(self)
                             self.consume()
-                        self.state = 102
+                        self.state = 99
                         self.expr(4)
                         pass
 
              
-                self.state = 107
+                self.state = 104
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,11,self._ctx)
+                _alt = self._interp.adaptivePredict(self._input,10,self._ctx)
 
         except RecognitionException as re:
             localctx.exception = re
@@ -907,7 +897,7 @@ class FunxParser ( Parser ):
         self.enterRule(localctx, 14, self.RULE_ident)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 108
+            self.state = 105
             self.match(FunxParser.VARID)
         except RecognitionException as re:
             localctx.exception = re

@@ -10,11 +10,11 @@ root : function* expr? EOF
 
 // A function has a name, a list of parameters and a list of statements
 function
-        :FUNCID (parameters)? '{' statements '}'
+        :FUNCID parameters '{' statements '}'
         ;
 
 parameters
-        : VARID (VARID)*
+        : (VARID)*
         ;
 
 statements

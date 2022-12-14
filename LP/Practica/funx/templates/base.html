@@ -1,1 +1,63 @@
- 
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <title>Funx Language Interpreter</title>
+  </head>
+  <body>
+    <header style ="font-family:sans-serif">Funx Language Interpreter</header>
+    <main>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+      <tr>
+
+      <td width="50%">
+      <p style ="font-family:sans-serif"> Functions </p>
+      <table border = 1>
+        <ul>
+        {% for key, value in functions.items() %}
+          <tr>
+            <td> {{ key+" "+value["Params"]|join(" ")}} </td>
+          </tr>
+        {% endfor %}
+      </table>
+
+
+      <form action = "http://localhost:5000/result" method = "POST">
+        <p style ="font-family:sans-serif">Console</p>
+        <p></p><textarea rows = "10" cols = "30" name = "input">
+        </textarea></p>
+        <p><input type = "submit" value = "submit" /></p>
+      </form>
+
+      <p style ="font-family:sans-serif"> Errors </p>
+      <table>
+        <ul>
+          <tr>
+            <td> {{ error }} </td>
+          </tr>
+      </table>
+      </td>
+
+      <td width="50%" style="vertical-align:top">
+      <p style ="font-family:sans-serif"> Results </p>
+      <table border = 1>
+        <ul>
+        {% for result in results %}
+          <tr>
+            <td> {{ result}} </td>
+          </tr>
+        {% endfor %}
+      </table>
+
+      </td>
+      
+
+    </tr>
+    </main>
+
+
+  </table>
+    <footer></footer>
+  </body>
+</html>

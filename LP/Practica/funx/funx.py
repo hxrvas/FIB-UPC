@@ -10,6 +10,9 @@ from FunxLexer import FunxLexer
 from FunxParser import FunxParser
 import sys
 
+from flask import Flask, render_template, request
+
+
 class TreeVisitor(FunxVisitor):
     def __init__(self):
         self.GlobalScope = dict()
@@ -157,10 +160,40 @@ class TreeVisitor(FunxVisitor):
         l = list(ctx.getChildren())
         return int(l[0].getText())
 
-
-i = 0
+app = Flask(__name__)
 visitor = TreeVisitor()
-while True:
+results = []
+@app.route('/')
+def index():    
+    return render_template('base.html',results=results, functions=visitor.GlobalScope, error="")
+
+@app.route('/result', methods=['POST', 'GET'])
+def result():
+    if request.method == 'POST':
+        try:
+            input_stream = InputStream(request.form.get('input', type=str))
+            lexer = FunxLexer(input_stream)
+            token_stream = CommonTokenStream(lexer)
+            parser = FunxParser(token_stream)
+            tree = parser.root() 
+            out = visitor.visit(tree)
+            result = str(input_stream)
+            results.append(result)
+            result = str(out)
+            results.append(result)
+
+            if len(results) > 12:
+                results.pop(0)
+                results.pop(0)
+
+            functions = visitor.GlobalScope
+            return render_template("base.html", results=results, functions=functions, error="")
+        except Exception as e:
+            return render_template("base.html", results=results, functions=visitor.GlobalScope, error=e)
+
+
+
+""" while True:
     try:
         input_stream = InputStream(input('? '))
         lexer = FunxLexer(input_stream)
@@ -173,4 +206,4 @@ while True:
         print("Out " + str(i) + ": " + str(out))
         i += 1
     except Exception as e:
-        print(e)
+        print(e) """

@@ -23,11 +23,11 @@ statements
 
 // The different types of instructions
 statement
-        // Assignació
+        // Assign
         : left_expr ASSIGN expr                                 # assignStmt
         // if else (else optional)
         | IF expr '{' statements '}' (ELSE '{' statements '}')? # ifStmt
-        // Iteració amb while
+        // While
         | WHILE expr '{' statements '}'                         # whileStmt
         | expr                                                  # returnStmt
         ;

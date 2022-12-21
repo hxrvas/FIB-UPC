@@ -1,63 +1,114 @@
 <!DOCTYPE html>
 <html lang="">
   <head>
+    <style> 
+      textarea {
+      width: 100%;
+      height: 150px;
+      padding: 7px 14px;
+      box-sizing: border-box;
+      border: 2px solid #ccc;
+      border-radius: 4px;
+      background-color: #000000;
+      font-size: 16px;
+      font-family: 'Courier New', Courier, monospace;
+      color: #fcfcfc;
+      resize: none;
+      }
+      input[type=submit] {
+      width: 100%;
+      background-color: #ffa700;
+      color: #fcfcfc;
+      padding: 14px 21px;
+      margin: 7px 0px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      }
+      tr:nth-child(even) {
+      background: #353535;
+      }
+      tr:nth-child(odd) {
+      background: #424242;
+      }
+      table {
+      width: 100%;
+      }
+      th, td {
+      padding: 7px 21px;
+      }
+    </style>
     <meta charset="utf-8">
     <title>Funx Language Interpreter</title>
   </head>
-  <body>
-    <header style ="font-family:sans-serif">Funx Language Interpreter</header>
+  <body style = "background-color: #141414;">
+    <header style ="font-family:sans-serif; background:#141414; color:#ffa700; font-size:large; ">
+      <strong>Funx Language Interpreter</strong> 
+    </header>
     <main>
-    <table width="100%" border="0" cellspacing="0" cellpadding="0">
-
-      <tr>
-
-      <td width="50%">
-      <p style ="font-family:sans-serif"> Functions </p>
-      <table border = 1>
-        <ul>
-        {% for key, value in functions.items() %}
-          <tr>
-            <td> {{ key+" "+value["Params"]|join(" ")}} </td>
-          </tr>
-        {% endfor %}
-      </table>
-
-
-      <form action = "http://localhost:5000/result" method = "POST">
-        <p style ="font-family:sans-serif">Console</p>
-        <p></p><textarea rows = "10" cols = "30" name = "input">
-        </textarea></p>
-        <p><input type = "submit" value = "submit" /></p>
-      </form>
-
-      <p style ="font-family:sans-serif"> Errors </p>
-      <table>
-        <ul>
-          <tr>
-            <td> {{ error }} </td>
-          </tr>
-      </table>
-      </td>
-
-      <td width="50%" style="vertical-align:top">
-      <p style ="font-family:sans-serif"> Results </p>
-      <table border = 1>
-        <ul>
-        {% for result in results %}
-          <tr>
-            <td> {{ result}} </td>
-          </tr>
-        {% endfor %}
-      </table>
-
-      </td>
-      
-
-    </tr>
+      <table width="100%" border="0" cellspacing="2" cellpadding="21">
+        <tr>
+          <td width="50%" style="vertical-align: top; background-color:#282828">
+            <p style ="font-family:sans-serif; color: #fcfcfc;"> 
+              <strong>Functions</strong>
+            </p>
+            <table border = 0 cellspacing="0">
+              <ul>
+              {% for key, value in functions.items() %}
+              <tr>
+                <td style ="font-family:sans-serif; color:#fcfcfc"> {{ key+" "+value["Params"]|join(" ")}} </td>
+              </tr>
+              {% endfor %}
+            </table>
+            <form action = "http://localhost:5000/result" method = "POST">
+              <p style ="font-family:sans-serif; color:#fcfcfc">
+                <strong>Console</strong>
+              </p>
+              <p><textarea name = "input"  autocapitalize="off" autocorrect="off" spellcheck="false"></textarea></p>
+              <p><input type = "submit" value = "SUBMIT"/></p>
+            </form>
+            <p style ="font-family:sans-serif; color: #fcfcfc;">
+              <strong>Errors</strong>
+            </p>
+            <table border="0" cellspacing="0">
+              <ul>
+              <tr>
+                <td style ="font-family:sans-serif; color:#fcfcfc"> {{ error }} </td>
+              </tr>
+            </table>
+          </td>
+          <td width="50%" style="vertical-align:top; background-color:#212121">
+            <p style ="font-family:sans-serif; color:#fcfcfc"> 
+              <strong>Results</strong>
+            </p>
+            <table border = 0 cellspacing="0">
+              <ul>
+              {% for result in results %}
+              <tr>
+                <td style ="font-family:sans-serif; color:#fcfcfc"> {{ result}} </td>
+              </tr>
+              {% endfor %}
+            </table>
+          </td>
+        </tr>
     </main>
-
-
-  </table>
-    <footer></footer>
+    </table>
+    <script>
+      const textarea = document.querySelector('textarea')
+      
+      textarea.addEventListener('keydown', (e) => {
+        if (e.keyCode === 9) {
+          e.preventDefault()
+      
+          textarea.setRangeText(
+            '  ',
+            textarea.selectionStart,
+            textarea.selectionStart,
+            'end'
+          )
+        }
+      })
+    </script>
+    <footer style="font-family:sans-serif"> WebPage and Interpreter by Joan Hervás Roldán </footer>
   </body>
 </html>

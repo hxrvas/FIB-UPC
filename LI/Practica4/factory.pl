@@ -20,8 +20,8 @@ maxHour(168).
 %% format:
 %% task( taskID, Duration, ListOFResourcesUsed ).
 %% resourceUnits( resourceID, NumUnitsAvailable ).
- :-include(easy152).       % simple input example file. 
-%:-include(hardMaybe97).   % for this example there is a solution of cost 97.  We think it is optimal.
+ %: -include(easy152).       % simple input example file. 
+:-include(hardMaybe97).   % for this example there is a solution of cost 97.  We think it is optimal.
 %:-include(hardMaybe147).  % for this example there is a solution of cost 147. We think it is optimal.
 
 %%%%%% Some helpful definitions to make the code cleaner:
@@ -29,7 +29,6 @@ maxHour(168).
 task(T):-              task(T,_,_).
 duration(T,D):-        task(T,D,_).
 usesResource(T,R):-    task(T,_,L), member(R,L).
-
 %%%%%%
 
 symbolicOutput(0).  % set to 1 to see symbolic output only; 0 otherwise.
@@ -37,6 +36,7 @@ symbolicOutput(0).  % set to 1 to see symbolic output only; 0 otherwise.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 1.- Declare SAT variables to be used
 satVariable( start(T,H) ):- task(T), integer(H).   % "task T starts at hour H"     (MANDATORY)
+satVariable( resourceUsed(R, T, H) ):- resourceUnits(R, _), task(T), integer(H).  % "resource R is used at hour H"
 % more variables will be needed.... See displaySol!
 
 
@@ -47,10 +47,19 @@ satVariable( start(T,H) ):- task(T), integer(H).   % "task T starts at hour H"  
 writeClauses(infinite):- !, maxHour(M), writeClauses(M),!.
 writeClauses(MaxHours):-
     eachTaskStartsOnce(MaxHours),
-    ...
+    resourceMeaning(MaxHours),
+    noOverlapResources(MaxHours),
     true,!.
 writeClauses(_):- told, nl, write('writeClauses failed!'), nl,nl, halt.
 
+eachTaskStartsOnce(MaxHours):- task(T), duration(T, D), Max is MaxHours - D+1, findall(start(T,H), between(1,Max,H), Lits), exactly(1,Lits), fail.
+eachTaskStartsOnce(_).
+
+resourceMeaning(MaxHours):- task(T1), duration(T1, D1),  Max is MaxHours - D1+1, between(1,Max,H1), H2 is H1+D1-1, usesResource(T1, R), between(H1, H2, H), writeClause([-start(T1, H1), resourceUsed(R, T1, H)]),   fail.
+resourceMeaning(_).
+
+noOverlapResources(MaxHours):- between(1, MaxHours, H), resourceUnits(R, U), findall(resourceUsed(R, T, H), task(T), Lits), atMost(U, Lits), fail. 
+noOverlapResources(_).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 3. This predicate displays a given solution M:
@@ -83,7 +92,7 @@ costOfThisSolution(M,Cost):- findall(End, ( member(start(T,H),M), duration(T,D),
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % No need to modify anything below this line:
 
-main:-  symbolicOutput(1), !, writeClauses(50), halt.   % print the clauses in symbolic form and halt
+main:-  symbolicOutput(1), !, writeClauses(168), halt.   % print the clauses in symbolic form and halt
 main:-
     told, write('Looking for initial solution with arbitrary cost...'), nl,
     initClauseGeneration,

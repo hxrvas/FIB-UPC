@@ -17,14 +17,20 @@
 main:- p(5), nl, halt.
 
 p(N):-
+    %1: Dominio:
     NSquare is N*N,
     length( Vars, NSquare ),
-    ...
+    Vars ins 1..NSquare,
+    %2: Restricciones:(
+    all_different(Vars),
     squareByRows(N,Vars,SquareByRows),
     transpose( SquareByRows, SquareByCols ),  % transpose already exists: no need to implement it
     Sum is (N + N*N*N) // 2,
     constraintsSum( Sum, SquareByRows),
-    ...
+    constraintsSum( Sum, SquareByCols),
+    %3: Etiquetado:
+    label(Vars),
+    %4: Salida:
     writeSquare(SquareByRows),nl,!.
 
 
@@ -33,6 +39,9 @@ squareByRows(N,Vars,[Row|SquareByRows]):- append(Row,Vars1,Vars), length(Row,N),
 
 writeSquare(Square):- member(Row,Square), nl, member(N,Row), write4(N), fail.
 writeSquare(_).
+
+constraintsSum(_,[]):-!.
+constraintsSum(Sum, [X|Rest]):- sum(X,#=,Sum), constraintsSum(Sum, Rest).
 
 write4(N):- N<10,   write('   '), write(N),!.
 write4(N):- N<100,  write('  ' ), write(N),!.

@@ -35,17 +35,40 @@ ejemplo(6,175,[81,64,56,55,51,43,39,38,35,33,31,30,29,20,18,16,14,9,8,5,4,3,2,1]
 
 
 main:- 
-    ejemplo(3,Big,Sides),
+    ejemplo(2,Big,Sides),
     nl, write('Fitting all squares of size '), write(Sides), write(' into big square of size '), write(Big), nl,nl,
     length(Sides,N), 
     length(RowVars,N), % get list of N prolog vars: Row coordinates of each small square
-    ...
-    insideBigSquare(N,Big,Sides,RowVars),
-    insideBigSquare(N,Big,Sides,ColVars),
-    nonoverlapping(N,Sides,RowVars,ColVars),
-    ...
+    length(ColVars,N), % get list of N prolog vars: Col coordinates of each small square
+    %Dominio
+
+    RowVars ins 1..Big,
+    ColVars ins 1..Big,
+    %Restricciones
+    insideBigSquare(Big,Sides,RowVars),
+    insideBigSquare(Big,Sides,ColVars),
+    nonoverlapping(Sides,RowVars,ColVars),
+    %Labeling
+    labeling([ff],RowVars),
+    labeling([ff],ColVars),
+    %Solucion
     displaySol(Big,Sides,RowVars,ColVars), halt.
 
+insideBigSquare(Big,[S|Sides],[V|Vars]):- 
+    V+S-1 #=< Big,
+    insideBigSquare(Big, Sides, Vars).
+
+insideBigSquare(_,[],[]).
+
+nonoverlapping([S1|Sides], [RV1|RowVars], [CV1|ColVars]):- 
+    nonoverlappingconstraint(S1,RV1,CV1,Sides,RowVars,ColVars),
+    nonoverlapping(Sides,RowVars,ColVars).
+nonoverlapping([],[],[]).
+
+nonoverlappingconstraint(S1,RV1, CV1, [S2|Sides], [RV2|RowVars], [CV2|ColVars]):- 
+    RV1+S1 #=< RV2 #\/ RV2+S2 #=< RV1 #\/ CV1+S1 #=< CV2 #\/ CV2+S2 #=< CV1,
+    nonoverlappingconstraint(S1,RV1,CV1,Sides,RowVars,ColVars).
+nonoverlappingconstraint(_,_,_,[],[],[]).
 
 displaySol(N,Sides,RowVars,ColVars):- 
     between(1,N,Row), nl, between(1,N,Col),

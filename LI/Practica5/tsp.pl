@@ -7,29 +7,48 @@
 %   -replacing in clause 3 the native swiprolog predicate "select" by your own better myselect
 % Can you solve the problem for all 22 cities?
 
+% NO OPTIMIZTIONS
+% Optimal route: [1,12,5,4,11,7,3,10,8,2,9,6]. 521 km.
+% 7.828 seconds.
+
+% 1 OPTIMIZATION
+%Optimal route: [1,12,5,4,11,7,3,10,8,2,9,6]. 521 km.
+%4.091 seconds.
+
+% 2 OPTIMIZATIONS
+%Optimal route: [1,12,5,4,11,7,3,10,8,2,9,6]. 521 km.
+%0.834 seconds.
+
+
+
+
+
+
 main:- statistics(walltime,_),
-       N=12,  %try higher numbers here...
-       retractall(bestRouteSoFar(_,_)),  assertz(bestRouteSoFar(100000,[])),  % "infinite" distance
-       findall(I,between(2,N,I),Cities), tsp( Cities, 0, [1] ).
+       N=22,  %try higher numbers here... (up to 22) number of cities
+       retractall(bestRouteSoFar(_,_)),  assertz(bestRouteSoFar(100000,[])),  % "infinite" distance and empty route
+       findall(I,between(2,N,I),Cities), tsp( Cities, 0, [1] ). % 0 is the distance traveled so far, [1] is the route so far
+
+
 main:- bestRouteSoFar(Km,ReverseRoute), reverse( ReverseRoute, Route ), nl,
        write('Optimal route: '), write(Route), write('. '), write(Km), write(' km.'), nl, nl,
        statistics(walltime,[MS|_]), S is MS/1000, write(S), write(' seconds.'), nl, halt.
 
-% tsp( Cities, AccumulatedKm, RouteSoFar )
-%1
+% tsp( Cities, AccumulatedKm, RouteSoFar ) is true if RouteSoFar is a route visiting all the cities in Cities
+%1 
 tsp( [], AccumulatedKm, RouteSoFar ):- storeRouteIfBetter(AccumulatedKm,RouteSoFar), fail.
 
 %2
-tsp(  _, AccumulatedKm, _          ):- bestRouteSoFar(Km,_), AccumulatedKm >= Km, !, fail.
+%tsp(  _, AccumulatedKm, _          ):- bestRouteSoFar(Km,_), AccumulatedKm >= Km, !, fail.
 %alternative:
-%tsp( Cities, AccumulatedKm, _ ):- bestRouteSoFar(Km,_),
-%    lowerBoundOfRemainingCities( Cities, LBound ),   %implement this (efficiently)!
-%    AccumulatedKm+LBound >= Km, !, fail.
+tsp( Cities, AccumulatedKm, _ ):- bestRouteSoFar(Km,_),
+    lowerBoundOfRemainingCities( Cities, LBound ),   %implement this (efficiently)!
+    AccumulatedKm+LBound >= Km, !, fail.
 
 %3
 tsp( Cities, AccumulatedKm, [ CurrentCity | RouteSoFar ] ):-
-    select( City, Cities, RemainingCities ),  % select next city to visit
-%   myselect( CurrentCity, City, Cities, RemainingCities ),  % implement this
+    %select( City, Cities, RemainingCities ),  % select next city to visit
+    myselect( CurrentCity, City, Cities, RemainingCities ),  % implement this
     distance( CurrentCity, City, Km ),  AccumulatedKm1 is AccumulatedKm+Km,
     tsp( RemainingCities, AccumulatedKm1, [ City, CurrentCity | RouteSoFar ] ).
 
@@ -40,7 +59,7 @@ storeRouteIfBetter( Km, Route ):-  bestRouteSoFar( BestKm, _ ), Km < BestKm,
     !.
 
 
-%  Number of points N is   22
+%  Number of points N is 22
 distance(A,B,Km):-
     M= [[   0,144,114,105, 31,109,135,132, 85, 79,158, 20, 73,162,127,190,156, 58, 87, 71,154, 55],
 	[ 144,  0,144,181,147, 76,195, 73, 64,114,220,135, 71, 18, 39, 60, 37,101, 62,146,205,153],
@@ -66,3 +85,30 @@ distance(A,B,Km):-
 	[  55,153, 66, 49, 24,146, 79,113,111, 48,102, 39, 95,169,124,183,151,100, 91, 20, 98,  0]],
     nth1(A,M,Row), nth1(B,Row,Km),!.
 
+%% Optimizations
+lowerBoundOfRemainingCities(Cities, LBound):- 
+	member(City, Cities),
+	subtract(Cities, [City], Cities2),
+	primAlgorithm(Cities2, LBound).
+
+primAlgorithm([City|Cities], LBound):-
+	findall([City2, Km], (member(City2, Cities), distance(City, City2, Km)), Kms),
+	findMinDistance(Kms, [City2, MinKm]), 
+	subtract(Cities, [City2], Cities2),
+	primAlgorithm(Cities2, LBound2),
+	LBound is LBound2 + MinKm.
+primAlgorithm([], 0).
+
+findMinDistance([[City,Km]|Kms], [MinCity, MinKm]):-
+	findMinDistance(Kms, [City, Km], [MinCity, MinKm]).
+
+findMinDistance([], [MinCity, MinKm], [MinCity, MinKm]).
+findMinDistance([[City,Km]|Kms], [CMinCity, CMinKm], [MinCity, MinKm]):-
+	(Km < CMinKm, findMinDistance(Kms, [City, Km], [MinCity, MinKm]));
+	(Km >= CMinKm, findMinDistance(Kms, [CMinCity, CMinKm], [MinCity, MinKm])).
+
+myselect( CurrentCity, City, Cities, RemainingCities ):-
+	findall([City2, Km], (member(City2, Cities), distance(CurrentCity, City2, Km)), Kms),
+	sort(2, @=<, Kms, SortedKms),
+	member([City, _], SortedKms),
+	subtract(Cities, [City], RemainingCities).

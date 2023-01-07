@@ -39,20 +39,11 @@ main:-
     nl, write('Fitting all squares of size '), write(Sides), write(' into big square of size '), write(Big), nl,nl,
     length(Sides,N), 
     length(RowVars,N), % get list of N prolog vars: Row coordinates of each small square
-%1: Dominio:
-    Vars ins 0..Amount,   % en el peor de los casos, solo hay monedas de valor 1...
-
-%2: Constraints:
-   
-
-
+    ...
     insideBigSquare(N,Big,Sides,RowVars),
     insideBigSquare(N,Big,Sides,ColVars),
     nonoverlapping(N,Sides,RowVars,ColVars),
-
-%3: labeling:
-    labeling( [min(ExprSum)], Vars  ),
-
+    ...
     displaySol(Big,Sides,RowVars,ColVars), halt.
 
 

@@ -25,7 +25,7 @@
 
 
 main:- statistics(walltime,_),
-       N=22,  %try higher numbers here... (up to 22) number of cities
+       N=12,  %try higher numbers here... (up to 22) number of cities
        retractall(bestRouteSoFar(_,_)),  assertz(bestRouteSoFar(100000,[])),  % "infinite" distance and empty route
        findall(I,between(2,N,I),Cities), tsp( Cities, 0, [1] ). % 0 is the distance traveled so far, [1] is the route so far
 

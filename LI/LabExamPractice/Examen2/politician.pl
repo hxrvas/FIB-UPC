@@ -25,15 +25,18 @@ road1(A-B,K):- road(A-B,K).
 road1(B-A,K):- road(A-B,K).
 
 
-politician(N,MaxKm,Trip):-     path(...).
+politician(N,MaxKm,Trip):-     path(N, MaxKm, 1, [], Trip).
 
 % path( NumCitiesRemainingToBeVisited, RemainingKm, CurrentCity, CitiesAlreadyVisited, Path )
 
-path( 0, RemainingKm, 1, _, [] ):- ..., !.
+path( 0, RemainingKm, 1, _, [] ):- RemainingKm >= 0, !.
 path( NumCitiesRemainingToBeVisited, RemainingKm, CurrentCity, CitiesAlreadyVisited, [CurrentCity1|Path] ):-
     road1( CurrentCity-CurrentCity1, K ),
-    ...
-    path( ... ).
+    \+ member(CurrentCity1, CitiesAlreadyVisited),
+    RemainingKm >= K,
+    NewRemainingKm is RemainingKm - K,
+    N1 is NumCitiesRemainingToBeVisited-1,
+    path(N1, NewRemainingKm, CurrentCity1, [CurrentCity1|CitiesAlreadyVisited], Path).
 
 
 %% Examples: this main writes the six trips below (in some order):
